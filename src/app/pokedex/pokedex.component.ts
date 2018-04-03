@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { POKEMONS } from './../mock-pokemon';
 import { pokemon } from './../pokemon';
+import {PokeapiService} from './../pokeapi.service';
 
 @Component({
   selector: 'app-pokedex',
@@ -11,10 +12,21 @@ export class PokedexComponent implements OnInit {
 
   pokemons = POKEMONS;
 
-  constructor() { }
+  constructor(private pokeApi:PokeapiService) {
 
-  ngOnInit() {
-   // this.PokemonService.getAllPokemons();
+  }
+
+  ngOnInit(){
+
+   this.pokeApi.getAllPokemons().subscribe(data => {
+             console.log(data)
+         });
+  }
+
+  goClick(){
+    console.log(this.name);
   }
   @Input() id: number;
+  @Input() name: string;
+
 }

@@ -4,10 +4,14 @@
   <label>Id:
     <input [(ngModel)]="id" placeholder="id"/>
   </label>
+  <label>Id:
+    <input [(ngModel)]="name" placeholder="name"/>
+  </label>
 </div>
+<button (click) = "goClick()" >Go</button>
 <h2>Pokémons : </h2>
 <select class="pokemons">
-  <option *ngFor="let pokemon of pokemons"
+  <option *ngFor="let pokemon of pokemons | pokemonName:'name':name"
     [value]="pokemon.id"
     [attr.selected]="pokemon.id==id ? true : null"> {{pokemon.name}}
 </option>

@@ -5,17 +5,29 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PokedexComponent } from './pokedex/pokedex.component';
 
+//Pipe
+import { PokemonNamePipe } from './pipes/pokemon-name/pokemon-name.pipe';
+
+//Service
+import { PokeapiService } from './pokeapi.service';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PokedexComponent
+    PokedexComponent,
+    PokemonNamePipe,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  exports: [
+    PokemonNamePipe
+  ],
+  providers: [PokeapiService,HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
