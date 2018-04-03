@@ -1,0 +1,14 @@
+<h1>Pokesir</h1>
+<div><span>Id: </span>{{id}}</div>
+<div>
+  <label>Id:
+    <input [(ngModel)]="id" placeholder="id"/>
+  </label>
+</div>
+<h2>Pokémons : </h2>
+<select class="pokemons">
+  <option *ngFor="let pokemon of pokemons"
+    [value]="pokemon.id"
+    [attr.selected]="pokemon.id==id ? true : null"> {{pokemon.name}}
+</option>
+</select>
