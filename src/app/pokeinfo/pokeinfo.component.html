@@ -1,7 +1,6 @@
 <div *ngIf="selectedPokemon">
 Name : {{ selectedPokemon.name }}<br/>
 Id : {{ selectedPokemon.id }}<br/>
-Poids {{ selectedPokemon.weight }}<br/>
-{{selectedPokemon.sprites}}
-<img [src] = "selectedPokemon.sprites.front_default"/>
+Poids : {{ selectedPokemon.weight }}<br/>
+<img [src] = "selectedPokemon.img"/>
 </div>

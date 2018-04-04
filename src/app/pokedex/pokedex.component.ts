@@ -25,7 +25,12 @@ export class PokedexComponent implements OnInit {
                     var results = data['results'];
                     var pokemonsReceived = new Array<pokemon>();
                     results.forEach(function (value) {
-                        pokemonsReceived.push(new pokemon(value['url'].substring(value['url'].indexOf('n/')+2,value['url'].length-1),value['name'],value['url']) );
+                      var currentPokemon = new pokemon();
+                      currentPokemon.id = value['url'].substring(value['url'].indexOf('n/')+2,value['url'].length-1);
+                      currentPokemon.name = value['name'];
+                      currentPokemon.url = value['url'];
+
+                        pokemonsReceived.push(currentPokemon);
                     });
                     this.pokemons = pokemonsReceived;
                     console.log(this.pokemons);
@@ -40,10 +45,8 @@ export class PokedexComponent implements OnInit {
 
     this.selectedPokemon = this.pokemons.find(i => i.id === id);
     this.pokeApi.getPokemonInfo(id).subscribe(data => {
-
-              console.log(data);
-
-
+        this.selectedPokemon.img = data.sprites.front_default;
+        this.selectedPokemon.weight = data.weight;
     });
   }
   @Input() id: number;
