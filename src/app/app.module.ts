@@ -12,12 +12,14 @@ import { PokemonNamePipe } from './pipes/pokemon-name/pokemon-name.pipe';
 import { PokeapiService } from './pokeapi.service';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import { PokeinfoComponent } from './pokeinfo/pokeinfo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokedexComponent,
     PokemonNamePipe,
+    PokeinfoComponent,
   ],
   imports: [
     HttpClientModule,

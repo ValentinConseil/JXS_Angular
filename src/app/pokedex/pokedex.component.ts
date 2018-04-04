@@ -11,6 +11,9 @@ import {PokeapiService} from './../pokeapi.service';
 export class PokedexComponent implements OnInit {
 
 //  pokemons = POKEMONS;
+
+  public selectedPokemon : pokemon;
+
   public pokemons : pokemon[];
   constructor(private pokeApi:PokeapiService) {
     this.pokemons = new Array<pokemon>();
@@ -35,6 +38,7 @@ export class PokedexComponent implements OnInit {
 
   onSelect(id : number){
 
+    this.selectedPokemon = this.pokemons.find(i => i.id === id);
     this.pokeApi.getPokemonInfo(id).subscribe(data => {
 
               console.log(data);

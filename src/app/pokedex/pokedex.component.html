@@ -1,5 +1,6 @@
 <h1>Pokesir</h1>
-<div><span>Id: </span>{{id}}</div>
+<app-pokeinfo [selectedPokemon] = "selectedPokemon"></app-pokeinfo>
+
 <div>
   <label>Id:
     <input [(ngModel)]="id" placeholder="id"/>
