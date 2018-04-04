@@ -9,14 +9,13 @@ export class PokeapiService {
 
   constructor(private http: HttpClient) {
 
-    this.getAllPokemons().subscribe(data => {
-                console.log(data)
-            });
-
    }
 
    getAllPokemons(): Observable<any> {
-        return this.http.get(this.pokeApiUrl+"pokemon/1");
-    }
 
+        return this.http.get(this.pokeApiUrl+"pokemon/?limit=949");
+    }
+    getPokemonInfo(id : number): Observable<any> {
+         return this.http.get(this.pokeApiUrl+"pokemon/"+id+"/");
+    }
 }

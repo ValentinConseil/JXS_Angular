@@ -10,21 +10,37 @@ import {PokeapiService} from './../pokeapi.service';
 })
 export class PokedexComponent implements OnInit {
 
-  pokemons = POKEMONS;
-
+//  pokemons = POKEMONS;
+  public pokemons : pokemon[];
   constructor(private pokeApi:PokeapiService) {
-
+    this.pokemons = new Array<pokemon>();
   }
 
   ngOnInit(){
 
-   this.pokeApi.getAllPokemons().subscribe(data => {
-             console.log(data)
-         });
+          this.pokeApi.getAllPokemons().subscribe(data => {
+                    var results = data['results'];
+                    var pokemonsReceived = new Array<pokemon>();
+                    results.forEach(function (value) {
+                        pokemonsReceived.push(new pokemon(value['url'].substring(value['url'].indexOf('n/')+2,value['url'].length-1),value['name'],value['url']) );
+                    });
+                    this.pokemons = pokemonsReceived;
+                    console.log(this.pokemons);
+          });
   }
 
+
   goClick(){
-    console.log(this.name);
+  }
+
+  onSelect(id : number){
+
+    this.pokeApi.getPokemonInfo(id).subscribe(data => {
+
+              console.log(data);
+
+
+    });
   }
   @Input() id: number;
   @Input() name: string;
